@@ -82,7 +82,5 @@ if solved:
 else:
     print_visual_feedback("Sudokube sem solução encontrada!", is_success=False)
 
-print(puzzle)
-
 print("\nExibindo o SudoKube...")
 Sudoku3DVisualizer(generated, puzzle).display()

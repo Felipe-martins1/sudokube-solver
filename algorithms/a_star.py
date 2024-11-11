@@ -1,6 +1,7 @@
 import heapq
 import numpy as np
 from support.utils import is_valid, sequencial_nums, num_faces, grid_size
+from metrics.metrics import iterate
 
 def _get_empty_cells(puzzle):
     """Retorna uma lista de todas as células vazias (com valor 0)."""
@@ -38,6 +39,8 @@ def a_star(puzzle, get_nums):
     visited = set()  
     
     while open_list:
+        iterate()
+
         current_state = heapq.heappop(open_list)  
         
         if current_state.h_cost == 0:  # Resolvido

@@ -2,6 +2,7 @@ import numpy as np
 import random
 
 from support.utils import grid_size, num_faces
+from metrics.metrics import iterate 
 
 MAX_STAGNATION = 1000
 
@@ -81,6 +82,8 @@ def genetic_algorithm(initial_puzzle, get_nums, pop_size=50, max_generations=100
     last_best_fitness = float('inf')
 
     for generation in range(max_generations):
+        iterate()
+
         population.sort(key=calculate_fitness)
         best_fitness = calculate_fitness(population[0])
         if best_fitness >= last_best_fitness:

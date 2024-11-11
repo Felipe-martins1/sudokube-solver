@@ -2,8 +2,11 @@ import numpy as np
 import random
 
 from support.utils import num_faces, grid_size, is_valid
+from metrics.metrics import iterate
 
 def backtracking(individual, get_nums):
+    iterate()
+
     for face in range(num_faces):
         for row in range(grid_size):
             for col in range(grid_size):

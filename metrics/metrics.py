@@ -5,6 +5,7 @@ import threading
 start_time = 0  # Variável global para armazenar o tempo de início
 memory_start = 0  # Variável global para armazenar o uso de memória no início
 max_memory_used = 0
+iterations = 0
 stop_thread = False  # Controle para parar a thread
 
 def _get_memory_usage():
@@ -21,7 +22,7 @@ def _print_metrics_periodically():
             _print_metrics()
 
 def _print_metrics():
-    global start_time, memory_start, max_memory_used
+    global start_time, memory_start, max_memory_used, iterations
     
     elapsed_time = time.time() - start_time 
     current_memory = _get_memory_usage() - memory_start 
@@ -31,11 +32,14 @@ def _print_metrics():
 
     print(f"\nTempo desde o início: {elapsed_time:.2f} Segundos")
     print(f"Máximo de Memória Utilizada: {max_memory_used:.2f} MB")
+    print(f"Número de iterações: {iterations}")
 
 def start_metrics():
-    global start_time, memory_start, stop_thread
+    global start_time, memory_start, stop_thread, iterations
     start_time = time.time()
     memory_start = _get_memory_usage()  
+    iterations = 0
+    
     stop_thread = False
 
     threading.Thread(target=_print_metrics_periodically, daemon=True).start()
@@ -44,3 +48,7 @@ def stop_metrics():
     global start_time, memory_start, stop_thread
     stop_thread = True
     _print_metrics()
+
+def iterate():
+    global iterations
+    iterations += 1
